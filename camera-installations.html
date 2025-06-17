@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCTV Solutions - Telsat Engineering Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1F2937;
+      background-color: #F9FAFB;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .search-container input {
+      display: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      margin-left: 0.5rem;
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+    .search-container input.active {
+      display: inline-block;
+    }
+    /* Hero Section */
+    .service-hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: blue;
+      overflow: hidden;
+    }
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 45, 114, 0), rgba(0, 78, 146, 0));
+      z-index: 0;
+    }
+    .service-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    .service-hero h2 {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .service-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0; opacity: 1; }
+      to { width: 100%; opacity: 1; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .hero-cta {
+      background: linear-gradient(90deg, #14B8A6, #3B82F6);
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      color: white;
+      margin: 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+    .hero-cta:hover::before {
+      left: 100%;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      background: linear-gradient(90deg, #3B82F6, #14B8A6);
+    }
+    /* Custom Section */
+    .custom-section {
+      padding: 2rem 0 1rem;
+      background: linear-gradient(180deg, #F9FAFB, #E5E7EB);
+    }
+    .custom-section h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .custom-section h2::after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #14B8A6, #3B82F6);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    /* Feature Cards */
+    .feature-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      width: 400px;
+      min-height: 400px;
+      flex-shrink: 0;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      border-radius: 1rem;
+      transition: border 0.3s ease;
+    }
+    .feature-card:hover::before {
+      border-color: #14B8A6;
+    }
+    .feature-card .icon-circle {
+      background: #FFD700;
+      border-radius: 9999px;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .feature-card img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    /* Sliding Tiles */
+    .slider-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 1rem 0;
+    }
+    .slider-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      animation: slide 20s linear infinite;
+    }
+    .slider-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-50% - 1rem * 6));
+      }
+    }
+    /* Installation Overview Section */
+    .installation-overview {
+      padding: 2rem 0;
+      background: linear-gradient(180deg, #E5E7EB, #F9FAFB);
+    }
+    .installation-overview h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .installation-overview h2::after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #14B8A6, #3B82F6);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .image-text-container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .image-text-container img {
+      max-width: 50%;
+      height: auto;
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+    .image-text-container p {
+      max-width: 50%;
+      text-align: left;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    @media (max-width: 768px) {
+      .image-text-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .image-text-container img,
+      .image-text-container p {
+        max-width: 100%;
+      }
+    }
+    /* Steps to Install Section */
+    .steps-to-install {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: #FFFFFF;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .steps-to-install h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .steps-to-install h3::after {
+      content: '';
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #14B8A6, #3B82F6);
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .steps-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+    }
+    .step-item {
+      background: #F9FAFB;
+      border: 4px solid #E5E7EB;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+      clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+      width: 350px;
+      min-height: 120px;
+    }
+    .step-item:nth-child(1) { animation-delay: 0s; }
+    .step-item:nth-child(2) { animation-delay: 0.1s; }
+    .step-item:nth-child(3) { animation-delay: 0.2s; }
+    .step-item:nth-child(4) { animation-delay: 0.3s; }
+    .step-item:nth-child(5) { animation-delay: 0.4s; }
+    .step-item:nth-child(6) { animation-delay: 0.5s; }
+    .step-item:nth-child(7) { animation-delay: 0.6s; }
+    .step-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(20, 184, 166, 0.2);
+      border-color: #14B8A6;
+    }
+    .step-number {
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #FFD700;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .step-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1F2937;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .step-item p {
+      color: #4B5563;
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+    .step-item .get-quote-btn {
+      margin-top: 0.5rem;
+      background: #FFD700;
+      color: #1E1B4B;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 100%;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .arrow::before {
+      content: '';
+      position: absolute;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+    .arrow svg {
+      width: 2rem;
+      height: 2rem;
+      stroke: url(#arrow-gradient);
+      stroke-width: 3;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      z-index: 2;
+    }
+    .arrow:hover svg {
+      transform: scale(1.3);
+    }
+    @media (max-width: 1024px) {
+      .steps-flow {
+        flex-direction: column;
+        align-items: center;
+      }
+      .step-item {
+        width: 80%;
+        min-height: 120px;
+        clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+      }
+      .arrow {
+        transform: rotate(90deg);
+        height: 3rem;
+        width: 100%;
+      }
+    }
+    @media (max-width: 640px) {
+      .steps-to-install h3 {
+        font-size: 1.5rem;
+      }
+      .step-item {
+        width: 100%;
+        padding: 1rem;
+        clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+        min-height: 100px;
+      }
+      .step-item h4 {
+        font-size: 1rem;
+      }
+      .step-item p {
+        font-size: 0.85rem;
+      }
+      .step-number {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+      }
+      .step-item .get-quote-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Why Choose Us Section */
+    .why-choose-us {
+      background: linear-gradient(135deg, #0A1D37, #1E3A8A);
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-choose-us::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      animation: pulse 10s infinite ease-in-out;
+      z-index: 0;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .why-choose-us h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      z-index: 1;
+    }
+    .why-choose-us h2::after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #14B8A6, #6EE7B7);
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      box-shadow: 0 2px 6px rgba(20, 184, 166, 0.5);
+    }
+    .modern-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      z-index: 1;
+      height: 100%;
+    }
+    .modern-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(20, 184, 166, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .modern-card .icon-circle {
+      background: #FFD700;
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(20, 184, 166, 0.3);
+    }
+    .modern-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .modern-card p {
+      color: #A3BFFA;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .counter {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #6EE7B7;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(110, 231, 183, 0.4);
+    }
+    /* Contact Section */
+    .contact-section {
+      padding: 1rem 0;
+      position: relative;
+      background: linear-gradient(135deg, #1E1B47, #2C2A6F);
+      color: white;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .contact-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      color: #2F855A;
+    }
+    /* Form Styles */
+    .contact-section input,
+    .contact-section textarea {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #E5E7EB;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .contact-section input:focus,
+    .contact-section textarea:focus {
+      border-color: #FFD700;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    }
+    .contact-section input:focus + label,
+    .contact-section input:not(:placeholder-shown) + label,
+    .contact-section textarea:focus + label,
+    .contact-section textarea:not(:placeholder-shown) + label {
+      top: -8px;
+      font-size: 0.75rem;
+      color: #FFD700;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0 4px;
+    }
+    .contact-section label {
+      color: #D1D5DB;
+    }
+    .contact-section button {
+      background: #2F855A;
+      color: white;
+      font-weight: 700;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .contact-section button:hover {
+      background: #3DA768;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(47, 133, 90, 0.4);
+    }
+    /* Background Animation */
+    .contact-section .bg-circle {
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent);
+    }
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .animate-fade-in-delay {
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+    .animate-slide-up {
+      animation: slideUp 1s ease-out forwards;
+    }
+    .animate-pulse-slow {
+      animation: pulseSlow 6s infinite ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseSlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @media (max-width: 640px) {
+      .service-hero {
+        height: 70vh;
+      }
+      .service-hero h2 {
+        font-size: 2.5rem;
+      }
+      .service-hero p {
+        font-size: 1.25rem;
+      }
+      .custom-section h2,
+      .installation-overview h2,
+      .why-choose-us h2,
+      .contact-section h2 {
+        font-size: 2rem;
+      }
+    }
+    /* Contact Section Specific Styles */
+    .contact-section h3 {
+      color: #2F855A;
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Gradient Definition -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#14B8A6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Header -->
+  <header class="custom-header">
+    <div class="custom-container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Telsat Engineering Solutions Logo" class="h-10 mr-3">
+        <h1>Telsat Engineering Services</h1>
+      </div>
+      <button class="nav-toggle md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-8">
+        <a href="index.html#home">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#companies">Companies</a>
+        <a href="index.html#careers">Careers</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="service-hero" style="background-image: url('images/4K-Cameras.webp');">
+    <div class="custom-container mx-auto px-4 text-center fade-in">
+      <h2>Advanced CCTV Camera Solutions</h2>
+      <p style="overflow: hidden; white-space: nowrap; border-right: 2px solid red;">Protect your business with state-of-the-art surveillance technology.</p>
+      <div>
+        <a href="#contact" class="hero-cta get-free-quote">Get a Free Quote</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CCTV Information Section -->
+  <section class="custom-section">
+    <div class="custom-container mx-auto px-4">
+      <h2>Secure Your Space with Our CCTV Solutions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-12">
+        <!-- Features -->
+        <div class="feature-card fade-in">
+          <div class="icon-circle">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-2 10h-4v2h4v2H4v-2h4v-2H4V6h14v8z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Key Features</h3>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>4K Ultra HD resolution for crystal-clear footage</li>
+            <li>Night vision with infrared up to 100ft</li>
+            <li>Motion detection with real-time alerts</li>
+            <li>Weatherproof design (IP66 rating)</li>
+            <li>Remote access via mobile app</li>
+          </ul>
+        </div>
+        <!-- Benefits -->
+        <div class="feature-card fade-in">
+          <div class="icon-circle">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Benefits</h3>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>Enhanced security with 24/7 monitoring</li>
+            <li>Deterrence of theft and vandalism</li>
+            <li>Evidence collection for incidents</li>
+            <li>Peace of mind for business owners</li>
+            <li>Cost-effective long-term solution</li>
+            <li>Add potency to alarm systems</li>
+            <li>Is an alternative to physical security</li>
+            <li>Requires minimal maintenance</li>
+          </ul>
+        </div>
+        <!-- Applications -->
+        <div class="feature-card fade-in">
+          <div class="icon-circle">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM9 15h6v2H9z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Applications</h3>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>Retail stores and warehouses</li>
+            <li>Office buildings and corporate campuses</li>
+            <li>Manufacturing facilities</li>
+            <li>Residential complexes</li>
+            <li>Public spaces and parking lots</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Types of CCTV Cameras (Sliding) -->
+      <div class="mt-6">
+        <h3 class="text-2xl font-semibold text-center mb-6">Types of CCTV Cameras We Offer</h3>
+        <div class="slider-container">
+          <div class="slider-track">
+            <div class="feature-card fade-in">
+              <img src="images/dome-cam2.jpg" alt="Dome Camera">
+              <h4 class="text-lg font-semibold mb-2">Dome Cameras</h4>
+              <p class="text-gray-600">Discreet and vandal-resistant, ideal for indoor use in offices and retail spaces.</p>
+            </div>
+            <div class="feature-card fade-in">
+              <img src="images/bullet-cam2.webp" alt="Bullet Camera">
+              <h4 class="text-lg font-semibold mb-2">Bullet Cameras</h4>
+              <p class="text-gray-600">Long-range visibility, perfect for outdoor surveillance with a sleek design.</p>
+            </div>
+            <div class="feature-card fade-in">
+              <img src="images/ptz3.jpg" alt="PTZ Camera">
+              <h4 class="text-lg font-semibold mb-2">PTZ Cameras</h4>
+              <p class="text-gray-600">Pan, tilt, and zoom functionality for wide-area coverage and detailed monitoring.</p>
+            </div>
+            <div class="feature-card fade-in">
+              <img src="images/thermal-cam2.webp" alt="Thermal Camera">
+              <h4 class="text-lg font-semibold mb-2">Thermal Cameras</h4>
+              <p class="text-gray-600">Detect heat signatures in complete darkness, ideal for high-security areas.</p>
+            </div>
+            <div class="feature-card fade-in">
+              <img src="images/fisheye-cam.jpg" alt="Fisheye Camera">
+              <h4 class="text-lg font-semibold mb-2">Fisheye Cameras</h4>
+              <p class="text-gray-600">360-degree coverage, perfect for monitoring large open areas with a single camera.</p>
+            </div>
+            <div class="feature-card fade-in">
+              <img src="images/wireless-cam.jpg" alt="Wireless Camera">
+              <h4 class="text-lg font-semibold mb-2">Wireless Cameras</h4>
+              <p class="text-gray-600">Easy installation with Wi-Fi connectivity, ideal for flexible deployments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Camera Installation Overview Section -->
+  <section class="installation-overview">
+    <div class="custom-container mx-auto px-4">
+      <h2>CCTV Camera Installation</h2>
+      <div class="image-text-container fade-in">
+        <p class="text-gray-600">We offer CCTV Installation world wide. It’s worth making sure the camera is high enough quality, and a good CCTV installer should be able to advise you on the best place to install cameras.The CCTV System can be wired or wireless can be wired or wireless, depending on your budget and convenience. We deliver scalable, well-proven network video solutions that offer outstanding video surveillance and monitoring capability, combined with exceptional flexibility that keeps costs down. We help customers to shift from analog to IP-based solutions.We work with an extensive network of CCTV brands to create the perfect video surveillance solution for your present and future needs. We help you manage the responsibility, no matter how big it is. It’s what you can expect from VDS Uganda . We deal with CCTV Solutions from Samsung, Axis, Dahua, Grandstream, HikVision, Bosch,CpPLUS and Vivotek.
+        With decades of experience in the industry, we have established ourselves as one of the premier providers of digital CCTV systems. Our team of experts possesses expert knowledge of the industry and can design and implement digital setups that are tailored to your specific requirements, whether you need them for domestic or commercial purposes.
+        </p>
+        <img src="images/cam installer.jpg" alt="CCTV Installation Image">
+      </div>
+      <div class="image-text-container fade-in">
+        <img src="images/cctv1.jpg" alt="Camera Placement Image">
+        <p>Our team conducts a thorough evaluation of your property to identify optimal camera placement, coverage areas, and potential challenges. Accessing your residence and organization’s possible risk elements is one of the important steps in creating a security program. In the wake of illicit happenings, providing security to the business and home environment is extremely important. Have you ever thought about the implementation of CCTV security surveillance at your home or office premises? Definitely, it’s one of the finest systems that extend an additional line of protection to your important assets and premises. The challenge of the surveillance is perfectly benign in the hands of CCTV systems. Once you have clearly identified the risks and vulnerabilities, now that it’s time to install the latest CCTV security systems. CCTV security surveillance will not just increase the protection, but will also enhance the employee productivity as well.
+        We provide cheap CCTV camera instillation In Kampala and surrounding areas. Our security cameras installation service is suitable for your residential home or commercial places of business. For those that travel or need coverage across different locations, our internet Network/IP surveillance systems can be monitored remotely from your smartphone or laptop from anywhere in the world.
+        If power or electricity is inconsistent in your area, we can provide you with a solar CCTV camera setup, capable of running 24 hours (day & night) for ultimate peace of mind.
+        Depending on the closed circuit camera installation you choose, the capability for your system to function in daylight and or in night time (very dark conditions) is available with our night vision infrared CCTV cameras.
+        Selecting the right system can be confusing. Our expert team will guide you in choosing the perfect system for your budget and security needs. For example, you may be looking for hidden or subtle Dome cameras or perhaps high-function PTZ system that can be controlled remotely to zoom, tilt and move.  Alternatively you may need a longer range Bullet camera system suited for the outdoors, or High Definition (HD) crystal-clear image recording.
+        For specialized needs, such as thermal image CCTV cameras (that detect heat signatures), or C-Mount CCTV Cameras (that have detachable lenses), we are more than capable of not only supplying but installing as well.
+        With more than 500 successful fittings in the last 10 years, we are the best CCTV camera installation company in Kampala.
+        Our services also include free 6 months service and maintenance cover with every purchase, ensuring that your investment is protected and maintained for optimal performance.
+        </p>
+      </div>
+      <!-- Steps to Install CCTV with Telsat -->
+      <div class="steps-to-install fade-in">
+        <h3>Steps to Install CCTV with Telsat</h3>
+        <div class="steps-flow">
+          <div class="step-item">
+            <h4>Step 1: INITIAL CONSULTATION</h4>
+            <p>Contact us via phone or our website to schedule a free consultation. We'll discuss your security needs, budget, and preferences to recommend the best CCTV system for you.</p>
+            <a href="#contact" class="get-quote-btn">Get Quote</a>
+          </div>
+          <div class="step-item">
+            <h4>Step 2: SITE ASSESSMENT</h4>
+            <p>Our team visits your property to evaluate the layout, identify vulnerable areas, and determine optimal camera placement for maximum coverage.</p>
+            <a href="#contact" class="get-quote-btn">Get Quote</a>          
+		  </div>
+          <div class="step-item">
+            <h4>Step 3: SYSTEM SELECTION</h4>
+            <p>We help you choose the right CCTV system (e.g., Dome, Bullet, PTZ) based on your needs, offering options like wired, wireless, or solar-powered setups.</p>
+			<a href="#contact" class="get-quote-btn">Get Quote</a>
+		  </div>
+          <div class="step-item">
+            <h4>Step 4: PROFESSIONAL INSTALLATION</h4>
+            <p>Our certified technicians create a detailed plan & install the CCTV system, ensuring all cameras are securely mounted, wired, and connected to the monitoring system.</p>
+			<a href="#contact" class="get-quote-btn">Get Quote</a>
+		 </div>
+          <div class="step-item">
+            <h4>Step 5: SYSTEM CONFIGURATION AND TESTING</h4>
+            <p>We test the system to ensure all cameras are functioning, configure remote access on your devices, and set up motion detection and alerts.</p>
+			<a href="#contact" class="get-quote-btn">Get Quote</a>
+		  </div>
+           <div class="step-item">
+            <h4>Step 6: TRAINING AND SUPPORT</h4>
+            <p>We provide training on how to use your CCTV system and offer 6 months of free maintenance support to ensure everything runs smoothly.</p>
+			<a href="#contact" class="get-quote-btn">Get Quote</a>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact-section py-10 relative" id="contact">
+    <div class="custom-container mx-auto px-4 relative z-10">
+      <h2 class="animate-fade-in">Get in Touch with Us</h2>
+      <p class="text-center mb-12 max-w-2xl mx-auto animate-fade-in-delay">Have questions or ready to secure your space? Reach out to our team for a free consultation within 24 hours.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Contact Info -->
+        <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slide-up">
+          <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
+          <ul class="space-y-4">
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <span>Email: <a href="mailto:info@telsatsolutions.com" class="hover:underline">info@telsatsolutions.com</a></span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1.45 0 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span>Phone: <a href="tel:+15551234567" class="hover:underline">+1 (555) 123-4567</a></span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span>Address: 123 Tech Lane, Nairobi, Kenya</span>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <h4 class="text-xl font-semibold mb-3">Follow Us</h4>
+            <div class="flex space-x-4 social-icons">
+              <a href="https://twitter.com" target="_blank">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
+              </a>
+              <a href="https://facebook.com" target="_blank">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form -->
+        <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slide-up">
+          <h3 class="text-2xl font-semibold mb-4">Send Us a Message</h3>
+          <form class="space-y-6">
+            <div class="relative">
+              <input type="text" id="name" placeholder="Your Name" class="w-full px-4 py-2 rounded-lg focus:outline-none placeholder:text-gray-400" required>
+              <label for="name" class="absolute left-3 top-2 text-sm transition-all duration-300 pointer-events-none">Your Name</label>
+            </div>
+            <div class="relative">
+              <input type="email" id="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-lg focus:outline-none placeholder:text-gray-400" required>
+              <label for="email" class="absolute left-3 top-2 text-sm transition-all duration-300 pointer-events-none">Your Email</label>
+            </div>
+            <div class="relative">
+              <textarea id="message" placeholder="Your Message" rows="4" class="w-full px-4 py-2 rounded-lg focus:outline-none placeholder:text-gray-400" required></textarea>
+              <label for="message" class="absolute left-3 top-2 text-sm transition-all duration-300 pointer-events-none">Your Message</label>
+            </div>
+            <button type="submit" class="w-full py-2 rounded-lg">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Background Animation -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute w-64 h-64 bg-circle animate-pulse-slow -top-20 -left-20"></div>
+      <div class="absolute w-80 h-80 bg-circle animate-pulse-slow -bottom-20 -right-20"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="custom-footer">
+    <div class="custom-container mx-auto px-4">
+      <div class="mt-8 flex justify-center space-x-4">
+        <a href="https://twitter.com" target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p class="text-center mt-4 text-gray-400">© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.custom-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Hamburger Menu Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search Toggle and Functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.custom-section, .installation-overview, .why-choose-us, .contact-section').forEach(section => {
+        const title = section.querySelector('h2')?.textContent.toLowerCase() || '';
+        section.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Fade-in Animation on Scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    const animateCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const increment = target / 100;
+      let count = 0;
+
+      const updateCounter = () => {
+        if (count < target) {
+          count += increment;
+          counter.textContent = Math.ceil(count);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      updateCounter();
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // Slider Setup for Infinite Loop
+    const sliderTrack = document.querySelector('.slider-track');
+    const tiles = sliderTrack.querySelectorAll('.feature-card');
+    const tileCount = tiles.length;
+
+    // Duplicate tiles for seamless loop
+    tiles.forEach(tile => {
+      const clone = tile.cloneNode(true);
+      sliderTrack.appendChild(clone);
+    });
+
+    // Adjust animation duration based on number of tiles
+    const totalTiles = tileCount * 2;
+    const animationDuration = totalTiles * 4;
+    sliderTrack.style.animationDuration = `${animationDuration}s`;
+
+    // Form Submission Handling
+    document.querySelectorAll('.contact-section form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Message sent! We will get back to you within 24 hours.');
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

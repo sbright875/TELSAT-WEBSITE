@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Consulting - Telsat Engineering Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .nav-toggle { display: none; }
+    .nav-menu { display: flex; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 64px; 
+        left: 0; 
+        right: 0; 
+        background: white; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      }
+      .nav-menu.active { display: flex; }
+    }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .fade-in-fast {
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Faster transition duration */
+    }
+    .service-hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 4rem 0;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 45, 114, 0.7), rgba(0, 45, 114, 0.7));
+      z-index: 0;
+    }
+    .service-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    .modern-card {
+      position: relative;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem 2rem;
+      transition: all 0.3s ease;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .modern-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+      z-index: 0;
+    }
+    .modern-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .modern-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+    .modern-card .icon-circle {
+      background: linear-gradient(135deg, #14B8A6, #3B82F6);
+      border-radius: 9999px;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .modern-card button {
+      background: linear-gradient(to right, #14B8A6, #3B82F6);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    .modern-card button:hover {
+      background: linear-gradient(to right, #3B82F6, #14B8A6);
+    }
+    @media (max-width: 640px) {
+      .service-hero h2 {
+        font-size: 3rem;
+        font-weight: 700;
+      }
+      .service-hero p {
+        font-size: 1rem;
+      }
+      .modern-card {
+        padding: 1rem;
+      }
+      .modern-card h3 {
+        font-size: 1.5rem;
+      }
+      .modern-card p {
+        font-size: 0.875rem;
+      }
+      .modern-card ul {
+        font-size: 0.875rem;
+      }
+    }
+    .service-hero h2 {
+      font-weight: 700; /* Bold text */
+      font-size: 4rem; /* Increased size to 64px */
+    }
+  </style>
+</head>
+<body>
+  <header class="custom-header sticky top-0 z-50">
+    <div class="custom-container flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Telsat Engineering Solutions Logo" class="h-10 mr-3">
+        <h1>Telsat Engineering Services</h1>
+      </div>
+      <button class="nav-toggle md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-8 custom-nav">
+        <a href="index.html#home">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#companies">Companies</a>
+        <a href="index.html#careers">Careers</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <section class="service-hero" style="background-image: url('images/IT-consulting.jpg');">
+    <div class="custom-container text-center fade-in">
+      <h2>IT CONSULTING</h2>
+      <p class="text-lg mb-6">Strategic guidance to optimize your IT infrastructure.</p>
+    </div>
+  </section>
+
+  <section class="custom-section py-16">
+    <div class="custom-container fade-in fade-in-fast" id="consulting-services">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Our IT Consulting Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+        <div class="modern-card" style="background-image: url('images/sustainable-telecom-team.jpg');">
+          <div class="icon-circle">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-extrabold text-gray-900 mb-4">Sustainable Telecom</h3>
+          <p class="text-lg text-gray-700 mb-6">Expert guidance for eco-friendly telecom solutions, enhancing energy efficiency and connectivity with minimal environmental impact. We help you better understand how to successfully exploit opportunities that exist in your chosen telecom vertical markets.</p>
+          <ul class="list-disc list-inside">
+            <li><a class="text-blue-600 hover:underline">Cloud and digital transformation consultancy</a></li>
+            <li><a class="text-blue-600 hover:underline">Security and data privacy consultancy</a></li>
+            <li><a class="text-blue-600 hover:underline">Virtualization, network transformation and modernization</a></li>
+            <li><a class="text-blue-600 hover:underline">Vendor evaluation, selection and management</a></li>
+            <li><a class="text-blue-600 hover:underline">Pricing strategies and profitability modeling</a></li>
+            <li><a class="text-blue-600 hover:underline">Risk management</a></li>
+            <li><a class="text-blue-600 hover:underline">Driving innovation and transformation consulting</a></li>
+            <li><a class="text-blue-600 hover:underline">Project management and execution</a></li>	
+          </ul>          
+          <button onclick="window.location.href='sustainable-telecom.html'" class="focus:outline-none">Learn More</button>
+        </div>
+		
+        <div class="modern-card" style="background-image: url('images/data-center.jpg'); height: 80%;">
+          <div>
+          </div>
+        </div>
+
+        <div class="modern-card" style="background-image: url('images/aerial.jpg'); height: 80%;">
+          <div>
+          </div>
+        </div>		
+		
+        <div class="modern-card" style="background-image: url('images/strategic-outsourcing-team.jpg'); height: 100%;">
+          <div class="icon-circle">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13h4v2h-4zm0 4h4v6h-4z"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-extrabold text-gray-900 mb-4">Strategic Outsourcing</h3>
+          <p class="text-lg text-gray-700 mb-6">Streamline operations with global talent, cutting costs while boosting efficiency to keep your business focused on core goals. Our strategic outsourcing enables you to focus on your core business while we take care of all, or part, of your network and systems integration needs.</p>
+          <ul class="list-disc list-inside">
+            <li><a class="text-blue-600 hover:underline">Project and program management</a></li>
+            <li><a class="text-blue-600 hover:underline">Site survey</a></li>
+            <li><a class="text-blue-600 hover:underline">Site audit</a></li>
+            <li><a class="text-blue-600 hover:underline">EF&I (Engineering, Furnish & Install) services</a></li>
+            <li><a class="text-blue-600 hover:underline">Network and IP design</a></li>
+            <li><a class="text-blue-600 hover:underline">Database, call flow and routing design</a></li>
+            <li><a class="text-blue-600 hover:underline">On-site technical support</a></li>
+            <li><a class="text-blue-600 hover:underline">Network verification testing</a></li>
+            <li><a class="text-blue-600 hover:underline">Operations integration</a></li>
+            <li><a class="text-blue-600 hover:underline">Remote network monitoring</a></li>			
+          </ul>          
+          <button onclick="window.location.href='strategic-outsourcing.html'" class="focus:outline-none">Learn More</button>
+        </div>
+        <div class="modern-card" style="background-image: url('images/enhanced-support-team.jpg'); height: 100%;">
+          <div class="icon-circle">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v7h-2zm0 9h2v2h-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-extrabold text-gray-900 mb-4">Enhanced Support</h3>
+          <p class="text-lg text-gray-700 mb-6">Proactive IT support with 24/7 assistance, optimizing systems for seamless performance and reliability. Our team will support your technological deployments long term. Our expert staff is comprised of in-house or outsourced instructors, with an extensive knowledge in next-generation networks, virtualization and auxiliary OSS/BSS technologies.</p>
+          <ul class="list-disc list-inside">
+            <li><a class="text-blue-600 hover:underline">24/7 Availability</a></li>
+            <li><a class="text-blue-600 hover:underline">Regular software updates and patches</a></li>
+            <li><a class="text-blue-600 hover:underline">Multi-Channel Support</a></li>
+            <li><a class="text-blue-600 hover:underline">Reporting & Data analytics</a></li>
+            <li><a class="text-blue-600 hover:underline">Disaster Recovery Planning</a></li>
+            <li><a class="text-blue-600 hover:underline">Asset Management</a></li>
+            <li><a class="text-blue-600 hover:underline">Data center Management</a></li>
+            <li><a class="text-blue-600 hover:underline">Incident Management</a></li>
+            <li><a class="text-blue-600 hover:underline">24/7 Availability</a></li>
+            <li><a class="text-blue-600 hover:underline">Team training courses</a></li>		
+          </ul>
+          <button onclick="window.location.href='enhanced-support.html'" class="focus:outline-none">Learn More</button>
+        </div>
+		
+        <div class="modern-card" style="background-image: url('images/engineer.jpg'); height: 90%;">
+          <div>
+          </div>
+        </div>	
+		
+      </div>
+    </div>
+  </section>
+  
+  <section class="custom-section">
+    <div class="custom-container fade-in">
+      <h3 class="text-xl font-semibold mb-2">Top Reasons Why Our IT Consulting Services</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li>IT performance improvement.</li>
+        <li>Business process improvement.</li>
+        <li>Capacity planning and management.</li>
+        <li>Implemantation, .</li>
+      </ul>
+      <a href="index.html#contact" class="cta-button">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer class="custom-footer">
+    <div class="custom-container">
+      <div class="flex justify-center space-x-4 mb-4">
+        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p>© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search toggle and functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.custom-section').forEach(section => {
+        const title = section.querySelector('h2').textContent.toLowerCase();
+        section.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Immediately trigger fade-in for the "Our IT Consulting Services" section
+    window.addEventListener('load', () => {
+      const consultingSection = document.querySelector('#consulting-services');
+      if (consultingSection) {
+        consultingSection.classList.add('visible');
+      }
+    });
+
+    // Fade-in animation on scroll for other elements
+    const fadeIns = document.querySelectorAll('.fade-in:not(#consulting-services)');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Software Development - Telsat Engineering Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .nav-toggle { display: none; }
+    .nav-menu { display: flex; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 64px; 
+        left: 0; 
+        right: 0; 
+        background: white; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      }
+      .nav-menu.active { display: flex; }
+    }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0s ease-out, transform 0s ease-out; 
+    }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .service-hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 1.5rem 0;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 45, 114, 0.4), rgba(0, 45, 114, 0.4));
+      z-index: 0;
+    }
+    .service-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card {
+      padding: 2rem; /* Increased padding for wider appearance */
+    }
+	.service-hero h2 {
+      font-weight: 700; /* Bold text */
+      font-size: 4rem; /* Increased size to 64px */
+    }
+    .consulting-card {
+      padding: 2rem;
+      background: #fff; /* White background for consulting cards */
+      border: 1px solid #e5e7eb; /* Subtle border */
+      border-radius: 0.5rem; /* Rounded corners */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Light shadow */
+    }
+    .subheading-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .subheading-item {
+      flex: 1;
+      min-width: 200px; /* Ensures reasonable width on smaller screens */
+      background: #fff; /* White background for tiles */
+      padding: 1rem; /* Padding for tile content */
+      border: 1px solid #e5e7eb; /* Subtle border */
+      border-radius: 0.5rem; /* Rounded corners */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Light shadow */
+    }
+    @media (max-width: 640px) {
+      .subheading-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="custom-header sticky top-0 z-50">
+    <div class="custom-container flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Telsat Engineering Solutions Logo" class="h-10 mr-3">
+        <h1>Telsat Engineering Services</h1>
+      </div>
+      <button class="nav-toggle md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-8 custom-nav">
+        <a href="index.html#home">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#companies">Companies</a>
+        <a href="index.html#careers">Careers</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <section class="service-hero" style="background-image: url('images/software-development.jpg');">
+    <div class="custom-container text-center fade-in">
+      <h2>Custom Software Development</h2>
+      <p class="text-lg mb-4">Expertise across a variety of software domains allows us to provide precisely focused consulting services. Having completed 1,900+ web projects, Telsat Engineering Solutions has the widest expertise in different types of web software, architectures, and business processes. Our consultants will help you make confident, cost-effective, and future-proof decisions on any software initiative.</p>
+    </div>
+  </section>
+
+  <section class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Software Development Consulting</h2>
+      <p class="text-lg mb-4">Our consulting services guide you through the complexities of software development, offering expertise across various platforms and architectures. We provide specialized consulting for industry-specific software solutions, addressing unique business challenges with tailored strategies</p>
+      <p class="text-lg mb-4">Our custom software development services deliver tailored solutions to meet your unique business needs. We design, build, and maintain scalable, secure, and high-performance applications, leveraging cutting-edge technologies and industry best practices.</p>
+
+	  <p></p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+        <div class="consulting-card">
+          <h3 class="text-xl font-semibold mb-2">Web Consulting</h3>
+          <p class="mb-4">Expert guidance on web application development, including architecture, frameworks, and performance optimization.</p>
+          
+          <div class="subheading-container">
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Web Portals</h4>
+              <ul class="list-disc list-inside">
+                <li><a href="vendor-portals.html" class="text-blue-600 hover:underline">Vendor Portals</a></li>
+                <li><a href="partner-portals.html" class="text-blue-600 hover:underline">Partner Portals</a></li>
+                <li><a href="employee-portals.html" class="text-blue-600 hover:underline">Employee Portals</a></li>
+                <li><a href="elearning-portals.html" class="text-blue-600 hover:underline">eLearning Portals</a></li>
+                <li><a href="government-portals.html" class="text-blue-600 hover:underline">Government Portals</a></li>
+                <li><a href="insurance-portals.html" class="text-blue-600 hover:underline">Insurance Portals</a></li>
+                <li><a href="patient-portals.html" class="text-blue-600 hover:underline">Patient Portals</a></li>
+                <li><a href="investor-portals.html" class="text-blue-600 hover:underline">Investor Portals</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Customer-facing Apps</h4>
+              <ul class="list-disc list-inside">
+                <li><a href="ecommerce-apps.html" class="text-blue-600 hover:underline">eCommerce Apps</a></li>
+                <li><a href="customer-portals.html" class="text-blue-600 hover:underline">Customer Portals</a></li>
+                <li><a href="service-apps.html" class="text-blue-600 hover:underline">Service Apps (e.g., flight booking apps)</a></li>
+                <li><a href="online-banking-apps.html" class="text-blue-600 hover:underline">Online Banking Apps</a></li>
+                <li><a href="online-auctions.html" class="text-blue-600 hover:underline">Online Auctions</a></li>
+                <li><a href="emarket-places.html" class="text-blue-600 hover:underline">eMarket Places</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Enterprise Apps</h4>
+              <ul class="list-disc list-inside">
+                <li><a href="crm.html" class="text-blue-600 hover:underline">CRM</a></li>
+                <li><a href="erp.html" class="text-blue-600 hover:underline">ERP</a></li>
+                <li><a href="collaboration-software.html" class="text-blue-600 hover:underline">Collaboration Software and Intranets</a></li>
+                <li><a href="financial-management-software.html" class="text-blue-600 hover:underline">Financial Management Software</a></li>
+                <li><a href="document-management-software.html" class="text-blue-600 hover:underline">Document Management Software</a></li>
+                <li><a href="knowledge-management-software.html" class="text-blue-600 hover:underline">Knowledge and Learning Management Software</a></li>
+                <li><a href="custom-enterprise-apps.html" class="text-blue-600 hover:underline">Any Custom Web Application for Specific Enterprise Needs</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Websites</h4>
+              <ul class="list-disc list-inside">
+                <li><a href="corporate-websites.html" class="text-blue-600 hover:underline">Corporate Websites</a></li>
+                <li><a href="portfolio-websites.html" class="text-blue-600 hover:underline">Portfolio Websites</a></li>
+                <li><a href="digital-media-websites.html" class="text-blue-600 hover:underline">Digital Media Websites</a></li>
+              </ul>
+            </div>
+          </div>
+		  <p></p>
+		<a href="index.html#contact" class="cta-button">Talk to Us</a>
+        </div>
+        <div class="consulting-card">
+          <h3 class="text-xl font-semibold mb-2">Mobile Consulting</h3>
+          <p class="mb-4">We Work with Mobile Apps for Different Industries, Goals, Audiences.</p>
+          <div class="subheading-container">
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Mobile App Development</h4>
+              <p class="mb-2">As a mobile app design agency, we pay attention to every detail when developing an application: from user needs to your goals. You will get a modern UI design that is simple and intuitive to use. Our mobile app designers will create a unique application design that sets you apart from the competition. we specialize in both Android and IOS platforms to develop apps in these sectors;</p>
+              <ul class="list-disc list-inside">
+                <li><a href="mobile-banking.html" class="text-blue-600 hover:underline">Mobile Banking App</a></li>
+                <li><a href="healthcare-apps.html" class="text-blue-600 hover:underline">Healthcare Mobile App</a></li>
+                <li><a href="telemedicine-apps.html" class="text-blue-600 hover:underline">Custom Telemedicine Apps</a></li>
+                <li><a href="iptv-apps.html" class="text-blue-600 hover:underline">Mobile IPTV App Development</a></li>
+                <li><a href="booking-apps.html" class="text-blue-600 hover:underline">Booking and Ticketing Apps</a></li>
+                <li><a href="lending-apps.html" class="text-blue-600 hover:underline">Lending Apps</a></li>
+                <li><a href="investment-apps.html" class="text-blue-600 hover:underline">Investment Apps</a></li>
+                <li><a href="insurance-apps.html" class="text-blue-600 hover:underline">Insurance Apps</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Mobile App Launch</h4>
+              <p class="mb-2">Here you get the product vision, architecture description and strategy, a prototype, and a precise development plan with specifications. Thus, you can start app development confidently, minimize development risks, and stay within budget and timeframes.</p>
+              <ul class="list-disc list-inside">
+                <li><a href="integration-planning.html" class="text-blue-600 hover:underline">Integration Planning</a></li>
+                <li><a href="architecture-tech.html" class="text-blue-600 hover:underline">Architecture and Technology Choice</a></li>
+                <li><a href="ux-ui-design.html" class="text-blue-600 hover:underline">UX and UI Designs</a></li>
+                <li><a href="feature-planning.html" class="text-blue-600 hover:underline">Feature Planning</a></li>
+                <li><a href="feasibility-study.html" class="text-blue-600 hover:underline">Feasibility Study and Market Research</a></li>
+                <li><a href="project-scoping.html" class="text-blue-600 hover:underline">Project Scoping</a></li>
+                <li><a href="cost-estimation.html" class="text-blue-600 hover:underline">Cost Estimation</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">App Modernization</h4>
+              <p class="mb-2">Mobile app consulting with SolveIt will help you to revamp your mobile app in the right way. We provide UI/UX redesign recommendations, performance best practices (architecture redesign, code refactoring, review of integrations), and feature upgrades. We also help to migrate to modern and future-proof platforms.</p>
+              <ul class="list-disc list-inside">
+                <li><a href="reintegration-planning.html" class="text-blue-600 hover:underline">Re-integration Planning</a></li>
+                <li><a href="feature-prioritization.html" class="text-blue-600 hover:underline">Feature Prioritization</a></li>
+                <li><a href="roadmap-planning.html" class="text-blue-600 hover:underline">Roadmap Planning</a></li>
+                <li><a href="code-refactoring.html" class="text-blue-600 hover:underline">Code Refactoring</a></li>
+                <li><a href="architecture-redesign.html" class="text-blue-600 hover:underline">Architecture Redesign Plan</a></li>
+                <li><a href="ux-ui-redesign.html" class="text-blue-600 hover:underline">UX/UI Redesign Plan</a></li>
+                <li><a href="backlog-analysis.html" class="text-blue-600 hover:underline">Backlog Analysis</a></li>
+              </ul>
+            </div>
+
+            <div class="subheading-item">
+              <h4 class="text-lg font-semibold mb-2">Mobile App Audit</h4>
+              <p class="mb-2">Our application development consultants perform the health check of your mobile application. It includes UI/UX audit, code audit, security and compliance review, device and platform compatibility audit.</p>
+              <ul class="list-disc list-inside">
+                <li><a href="code-audit.html" class="text-blue-600 hover:underline">Code Audit</a></li>
+                <li><a href="security-audit.html" class="text-blue-600 hover:underline">Security Audit</a></li>
+                <li><a href="device-compatibility.html" class="text-blue-600 hover:underline">Device Compatibility Audit</a></li>
+                <li><a href="ux-ui-audit.html" class="text-blue-600 hover:underline">UX and UI Audit</a></li>
+                <li><a href="platform-compatibility.html" class="text-blue-600 hover:underline">Platform Compatibility Audit</a></li>
+                <li><a href="compliance-audit.html" class="text-blue-600 hover:underline">Compliance Audit</a></li>
+              </ul>
+            </div>
+          </div>
+		  </p></p>
+        <a href="index.html#contact" class="cta-button">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer class="custom-footer">
+    <div class="custom-container">
+      <div class="flex justify-center space-x-4 mb-4">
+        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p>© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search toggle and functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.custom-section').forEach(section => {
+        const title = section.querySelector('h2').textContent.toLowerCase();
+        section.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Fade-in animation on scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

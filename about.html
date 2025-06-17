@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Telsat Engineering Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #1e293b;
+      --light: #f8fafc;
+      --accent: #0ea5e9;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1e293b;
+      scroll-behavior: smooth;
+    }
+    
+    .nav-toggle { display: none; }
+    .nav-menu { display: flex; align-items: center; }
+    .nav-menu a {
+      color: #2F855A;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .nav-menu a:hover {
+      color: #48BB78;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 1rem;
+        z-index: 50;
+      }
+      .nav-menu.active { display: flex; }
+    }
+
+    
+    /* Animation classes */
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    
+    /* Section styling */
+    .custom-section {
+      padding: 4rem 1.5rem;
+      position: relative;
+    }
+    
+    .custom-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    /* Hero section */
+    #about-hero {
+      background: linear-gradient(to right, rgba(59, 30, 46, 2), rgba(37, 99, 235, 0)), url('images/ai-generated-9.png') no-repeat center center/cover;
+      color: white;
+      padding: 0.5rem 0.5rem;
+      text-align: center;
+    }
+    
+    /* Justified text for about section */
+    .about-text {
+      text-align: justify;
+    }
+    
+    /* Values section */
+    .value-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .value-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+    
+    /* Team section */
+    .team-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .team-info {
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+      background: white;
+    }
+    
+    .team-social {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(37, 99, 235, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .team-card:hover .team-social {
+      opacity: 1;
+    }
+    
+    .team-social a {
+      color: white;
+      margin: 0 0.75rem;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .team-social a:hover {
+      transform: translateY(-3px);
+      color: var(--accent);
+    }
+    
+    /* Why choose us section */
+    .why-choose-us {
+      background: linear-gradient(to right, #f8fafc, #e0f2fe);
+      color: #1e293b;
+      padding: 4rem 1.5rem;
+    }
+    
+    .modern-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .modern-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .modern-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    /* Stats */
+    .counter {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Location */
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+    }
+        
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      margin-right: 0.75rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .custom-section {
+        padding: 3rem 1.5rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      #about-hero {
+        padding: 1rem 1.5rem;
+      }
+
+      .logo-container {
+        margin-left: 0;
+      }
+    }
+
+    /* Shift logo and title to the left */
+    .logo-container {
+      margin-left: -1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="custom-header sticky top-0 z-50 bg-white shadow-sm">
+    <div class="custom-container flex justify-between items-center py-4">
+      <div class="flex items-center logo-container">
+        <img src="logo.png" alt="Telsat Engineering Services Logo" class="h-12 mr-4">
+        <h1 class="text-2xl font-bold text-2F855A font-lora">Telsat Engineering Services</h1>
+      </div>
+      <button class="nav-toggle md:hidden text-2F855A focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-3">
+        <a href="index.html" class="px-3 py-2">Home</a>
+        <a href="about.html" class="px-3 py-2">About</a>
+        <a href="#services" class="px-3 py-2">Services</a>
+        <a href="#products" class="px-3 py-2">Products</a>
+        <a href="#projects" class="px-3 py-2">Projects</a>
+        <a href="#companies" class="px-3 py-2">Companies</a>
+        <a href="#blog" class="px-3 py-2">Blog</a>
+        <a href="#contact" class="px-3 py-2">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle text-2F855A">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input hidden md:inline-block bg-gray-100 rounded-full px-4 py-1 ml-2" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="about-hero">
+    <div class="custom-container">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 w-full text-center">Telsat Engineering Services</h1>
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-8 items-center">
+        <div>
+          <p class="text-lg leading-relaxed mb-4 about-text">Founded in 2013, Telsat Engineering Services Ltd. stands at the forefront of technological innovation, transforming the landscape of Electrical Engineering, Power Systems, Information Technology, Data & Telecommunications Infrastructure across Uganda and the African continent. Our mission is to deliver integrated, sustainable solutions that empower communities, businesses, and governments to thrive in a rapidly evolving digital world.</p>
+          <p class="text-lg leading-relaxed mb-4 about-text">With a team of seasoned experts, Telsat provides comprehensive services, from strategic consulting and cutting-edge design to flawless implementation, ongoing maintenance, and capacity building. Our unwavering commitment to quality, safety, and client satisfaction has earned us the trust of diverse public and private sector partners, making us a catalyst for progress and connectivity throughout the region.</p>
+          <a href="index.html#contact" class="cta-button mt-4 inline-block">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" class="custom-section bg-gray-50">
+    <div class="custom-container fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2>Our Vision</h2>
+        <p class="text-xl leading-relaxed">To be the leading provider of innovative IT, telecommunications, and power engineering solutions in Africa, driving sustainable development and enhancing connectivity for all communities across the continent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section id="mission" class="custom-section bg-white">
+    <div class="custom-container fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2>Our Mission</h2>
+        <p class="text-xl leading-relaxed">To empower our clients by providing exceptional, value-driven services in electrical, Information Technology, power, and telecom engineering through innovative solutions, driving digital transformation, enhancing cybersecurity, and optimizing cloud infrastructure to foster growth and resilience in an ever-evolving digital landscape.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section id="values" class="custom-section bg-gray-50">
+    <div class="custom-container fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-center section-title">Our Core Values</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-lightbulb text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Innovation</h3>
+              <p class="mt-2 text-gray-600">We embrace cutting-edge technologies to deliver creative and effective solutions.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-handshake text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Integrity</h3>
+              <p class="mt-2 text-gray-600">We uphold the highest standards of honesty and transparency in all our dealings.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-users text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Collaboration</h3>
+              <p class="mt-2 text-gray-600">We work closely with our clients and team to achieve shared success, teamwork is key.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-lock text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Confidentiality</h3>
+              <p class="mt-2 text-gray-600">We ensure a high degree of privacy when it comes to our client's data.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-user-check text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Customer Oriented</h3>
+              <p class="mt-2 text-gray-600">We prioritize our customers to ensure excellence and a positive impact on their business.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-card">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+              <i class="fas fa-check-circle text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3>Accountability</h3>
+              <p class="mt-2 text-gray-600">We hold ourselves accountable to our clients and deliver what we say we will.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="custom-section bg-white">
+    <div class="custom-container fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-center section-title">Our Leadership Team</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        <div class="team-card">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="John Doe">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="text-xl font-semibold">John Doe</h3>
+            <p class="text-blue-600">Chief Executive Officer</p>
+            <p class="mt-3 text-gray-600">Visionary leader with 15+ years in tech industry.</p>
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Jane Smith">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="text-xl font-semibold">Jane Smith</h3>
+            <p class="text-blue-600">Chief Technology Officer</p>
+            <p class="mt-3 text-gray-600">Expert in emerging technologies and innovation.</p>
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0e16019?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Emily Brown">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="text-xl font-semibold">Emily Brown</h3>
+            <p class="text-blue-600">Lead Software Engineer</p>
+            <p class="mt-3 text-gray-600">Full-stack developer with a passion for clean code.</p>
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Michael Lee">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="text-xl font-semibold">Michael Lee</h3>
+            <p class="text-blue-600">Cybersecurity Specialist</p>
+            <p class="mt-3 text-gray-600">Protecting businesses from evolving digital threats.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <div class="custom-container mx-auto px-4 fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-center section-title">Why Choose Telsat Engineering Services</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-chart-line text-2xl text-white"></i>
+          </div>
+          <h3>Experienced</h3>
+          <p class="text-gray-600">Our team has diverse experience in the Telecommunications and Information Technology sectors with a wide spectrum of technologies.</p>
+        </div>
+        
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-medal text-2xl text-white"></i>
+          </div>
+          <h3>100% Quality & Satisfaction Assurance</h3>
+          <p class="text-gray-600">We guarantee effectiveness and efficiency in the quality of work and support we deliver as per standards.</p>
+        </div>
+        
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-bolt text-2xl text-white"></i>
+          </div>
+          <h3>Quick Response</h3>
+          <p class="text-gray-600">We do realize that time is a high-value asset for your business and we support you to minimize IT service disruption risks.</p>
+        </div>
+        
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-store text-2xl text-white"></i>
+          </div>
+          <h3>One Stop Shop</h3>
+          <p class="text-gray-600">We handle all aspects of IT and telecommunications infrastructure including hardware, software and services.</p>
+        </div>
+        
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-comments text-2xl text-white"></i>
+          </div>
+          <h3>No Geek Speak</h3>
+          <p class="text-gray-600">We communicate complex technical issues clearly to clients without technical backgrounds.</p>
+        </div>
+        
+        <div class="modern-card">
+          <div class="icon-circle">
+            <i class="fas fa-headset text-2xl text-white"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p class="text-gray-600">Our dedicated support team is available around the clock to address your technical needs.</p>
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-12">
+        <div class="fade-in">
+          <div class="counter" data-target="12">0</div>
+          <p class="text-blue-600 font-medium">Years of Innovation</p>
+        </div>
+        
+        <div class="fade-in">
+          <div class="counter" data-target="260">0</div>
+          <p class="text-blue-600 font-medium">Cutting-Edge Projects</p>
+        </div>
+        
+        <div class="fade-in">
+          <div class="counter" data-target="105">0</div>
+          <p class="text-blue-600 font-medium">Satisfied Enterprises</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location" class="custom-section bg-white">
+    <div class="custom-container fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-center section-title">Our Location</h2>
+      </div>
+      <p class="text-xl text-center mb-8 max-w-2xl mx-auto">Visit us at our headquarters or get in touch. Our doors are always open for collaboration and innovation.</p>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153167!3d-37.81627997975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727e651c8b3b3!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1635781234567!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div>
+          <div class="bg-gray-50 p-8 rounded-xl">
+            <h3 class="text-2xl font-semibold mb-6">Headquarters</h3>
+            <p class="text-lg mb-4 flex items-start">
+              <i class="fas fa-map-marker-alt text-blue-600 mr-3 mt-1"></i>
+              <span>123 Innovation Drive, Melbourne, VIC 3000, Australia</span>
+            </p>
+            
+            <p class="text-lg mb-4 flex items-start">
+              <i class="fas fa-phone-alt text-blue-600 mr-3 mt-1"></i>
+              <span>+61 3 1234 5678</span>
+            </p>
+            
+            <p class="text-lg mb-4 flex items-start">
+              <i class="fas fa-envelope text-blue-600 mr-3 mt-1"></i>
+              <span>info@telsat-solutions.com</span>
+            </p>
+            
+            <p class="text-lg flex items-start">
+              <i class="fas fa-clock text-blue-600 mr-3 mt-1"></i>
+              <span>Monday-Friday: 9:00 AM - 6:00 PM</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="custom-footer">
+    <div class="custom-container">
+      <div class="flex justify-center space-x-6">
+        <a href="https://twitter.com" target="_blank" class="text-gray-200 hover:text-48BB78 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-gray-200 hover:text-48BB78 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-gray-200 hover:text-48BB78 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p class="text-gray-200">© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search toggle and functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('hidden');
+    });
+
+    // Animation on scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Animate counters if in view
+          if (entry.target.querySelector('.counter')) {
+            animateCounters();
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          
+          const inc = target / speed;
+          
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        
+        updateCount();
+      });
+    }
+  </script>
+</body>
+</html>

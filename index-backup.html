@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telsat Engineering Solutions - IT Products & Consultancy</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .nav-toggle { display: none; }
+    .nav-menu { display: flex; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 64px; 
+        left: 0; 
+        right: 0; 
+        background: white; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      }
+      .nav-menu.active { display: flex; }
+    }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .modern-contact-section {
+      background: linear-gradient(to bottom right, #EFF6FF, #F0FDFA);
+      padding: 4rem 0;
+    }
+    .modern-contact-card {
+      background: white;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+    .modern-contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    .modern-contact-input,
+    .modern-contact-textarea {
+      border: none;
+      border-bottom: 2px solid #d1d5db;
+      padding: 0.75rem 0;
+      width: 100%;
+      transition: border-color 0.3s ease;
+      background: transparent;
+    }
+    .modern-contact-input:focus,
+    .modern-contact-textarea:focus {
+      outline: none;
+      border-color: #3B82F6;
+    }
+    .modern-contact-textarea {
+      resize: vertical;
+    }
+    .modern-contact-button {
+      background: linear-gradient(to right, #14B8A6, #3B82F6);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    .modern-contact-button:hover {
+      background: linear-gradient(to right, #3B82F6, #14B8A6);
+    }
+    .modern-contact-checkbox-label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .modern-contact-checkbox {
+      margin-right: 0.5rem;
+      accent-color: #3B82F6;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .contact-detail-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .contact-detail-item svg {
+      margin-right: 0.75rem;
+    }
+    .contact-detail-item a:hover {
+      color: #3B82F6;
+    }
+    /* Carousel styles */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel-panel {
+      min-width: 33.33%;
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: opacity 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .carousel-panel {
+        min-width: 100%;
+      }
+    }
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .carousel-nav.prev {
+      left: 1rem;
+    }
+    .carousel-nav.next {
+      right: 1rem;
+    }
+    .carousel-nav.hidden {
+      display: none;
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      background: #d1d5db;
+      border-radius: 50%;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .carousel-dot.active {
+      background: #3B82F6;
+    }
+    .cta-button {
+      background-color: #2563eb;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <header class="custom-header sticky top-0 z-50">
+    <div class="custom-container flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Telsat Engineering Solutions Logo" class="h-10 mr-3">
+        <h1>Telsat Solutions</h1>
+      </div>
+      <button class="nav-toggle md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-4 custom-nav">
+        <a href="#home">Home</a>
+        <a href="about.html">About</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#projects">Projects</a>
+        <a href="#companies">Companies</a>
+        <a href="#careers">Careers</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="images/199876-911694738_small.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="custom-container text-center fade-in hero-content">
+      <h2>Innovative IT Solutions for Modern Businesses</h2>
+      <p class="text-lg mb-6">Delivering top-tier products and consulting to help you thrive in the digital world.</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+  </section>
+
+  <section id="services" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card service-card-it">
+          <h3 class="text-xl font-semibold mb-2">IT Consulting</h3>
+          <p>Strategic guidance to optimize your IT infrastructure.</p>
+          <a href="it-consulting.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-cloud">
+          <h3 class="text-xl font-semibold mb-2">Cloud Services & Management</h3>
+          <p>Seamless transition and management of cloud services.</p>
+          <a href="cloud-services.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-software">
+          <h3 class="text-xl font-semibold mb-2">Custom Software Development</h3>
+          <p>Tailored software solutions for your business needs.</p>
+          <a href="software-development.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-cyber">
+          <h3 class="text-xl font-semibold mb-2">Cybersecurity Audits</h3>
+          <p>Comprehensive security assessments to protect your data.</p>
+          <a href="cybersecurity.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-camera">
+          <h3 class="text-xl font-semibold mb-2">Camera Installations</h3>
+          <p>Comprehensive security solutions for enhanced protection.</p>
+          <a href="camera-installations.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-managed">
+          <h3 class="text-xl font-semibold mb-2">Managed Services</h3>
+          <p>Proactive IT management to keep your systems running smoothly.</p>
+          <a href="managed-services.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-support">
+          <h3 class="text-xl font-semibold mb-2">IT Support</h3>
+          <p>24/7 technical support to resolve issues quickly.</p>
+          <a href="it-support.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-hosting">
+          <h3 class="text-xl font-semibold mb-2">Web Hosting</h3>
+          <p>Reliable hosting for your websites and applications.</p>
+          <a href="web-hosting.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+        <div class="service-card service-card-power">
+          <h3 class="text-xl font-semibold mb-2">Power Management</h3>
+          <p>Efficient solutions for energy optimization.</p>
+          <a href="power-management.html" class="cta-button mt-4 inline-block text-sm">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Our Products</h2>
+      <p class="text-lg mb-6">Discover our suite of advanced software solutions tailored for enterprise efficiency, security, and growth.</p>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Change Management System</h3>
+            <p class="mb-4">Orchestrate organizational changes with precision, featuring dynamic workflows, compliance tracking, and real-time monitoring.</p>
+            <a href="change-management.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Device Inventory System</h3>
+            <p class="mb-4">Effortlessly manage hardware assets with detailed tracking, automated updates, and cost-saving analytics.</p>
+            <a href="device-inventory.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Bulk SMS</h3>
+            <p class="mb-4">Reach your audience instantly with our reliable, scalable SMS platform for marketing, alerts, and notifications.</p>
+            <a href="bulk-sms.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.104-.896 2-2 2s-2-.896-2-2 2-4 2-4 2 2.896 2 4zm0 0c0 1.104.896 2 2 2s2-.896 2-2-2-4-2-4-2 2.896-2 4zm-7 4c0 1.104-.896 2-2 2s-2-.896-2-2 2-4 2-4 2 2.896 2 4zm14 0c0 1.104-.896 2-2 2s-2-.896-2-2 2-4 2-4 2 2.896 2 4z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Equipment Identity Register</h3>
+            <p class="mb-4">Secure telecom networks with 3GPP-compliant device identity management, fraud prevention, and S13 interface support.</p>
+            <a href="equipment-identity.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Customer Relationship Management System</h3>
+            <p class="mb-4">Enhance customer engagement with integrated sales, support, and analytics tools for personalized experiences.</p>
+            <a href="crm-system.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+          <div class="carousel-panel">
+            <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Telsat Ticketing System</h3>
+            <p class="mb-4">Streamline IT and customer support with an intuitive ticketing platform for fast issue resolution.</p>
+            <a href="ticketing-system.html" class="cta-button inline-block text-sm">Learn More</a>
+          </div>
+        </div>
+        <button class="carousel-nav prev hidden md:block">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button class="carousel-nav next md:block">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Case Studies</h2>
+      <p class="text-lg mb-4">See how we've helped companies streamline operations and grow with cutting-edge tech.</p>
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40" alt="Case Study Showcase" class="section-image mx-auto">
+    </div>
+  </section>
+
+  <section id="companies" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Companies We’ve Worked With</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <img src="images/lya logo.png" alt="Company 1 Logo" class="company-logo mx-auto">
+        <img src="images/Airtel_logo-01.png" alt="Company 2 Logo" class="company-logo mx-auto">
+        <img src="images/New-mtn-logo.jpg" alt="Company 3 Logo" class="company-logo mx-auto">
+        <img src="images/tmobile logo.png" alt="Company 4 Logo" class="company-logo mx-auto">
+        <img src="images/logo1.jpg" alt="Company 5 Logo" class="company-logo mx-auto">
+        <img src="images/microsoft logo.png" alt="Company 6 Logo" class="company-logo mx-auto">
+        <img src="images/google logo.png" alt="Company 7 Logo" class="company-logo mx-auto">
+        <img src="images/Huawei Logo.png" alt="Company 8 Logo" class="company-logo mx-auto">
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>What People Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="testimonial-card">
+          <p>"Telsat Engineering transformed our IT infrastructure with seamless cloud migration."</p>
+          <div class="star-rating">★★★★★</div>
+          <p class="font-semibold">Jane Doe, CTO</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"Their cybersecurity audits saved us from potential breaches."</p>
+          <div class="star-rating">★★★★☆</div>
+          <p class="font-semibold">John Smith, CEO</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"Custom software solutions that perfectly fit our needs."</p>
+          <div class="star-rating">★★★★★</div>
+          <p class="font-semibold">Emily Brown, COO</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="careers" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Careers</h2>
+      <p class="text-lg mb-4">Join our team and shape the future of technology.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="job-card">
+          <h3 class="text-xl font-semibold text-blue-600 mb-2">Senior Software Engineer</h3>
+          <p>Develop cutting-edge software solutions for enterprise clients.</p>
+          <a href="#contact" class="cta-button mt-4 inline-block">Apply Now</a>
+        </div>
+        <div class="job-card">
+          <h3 class="text-xl font-semibold text-blue-600 mb-2">Cybersecurity Analyst</h3>
+          <p>Protect our clients with advanced security assessments.</p>
+          <a href="#contact" class="cta-button mt-4 inline-block text-sm">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Industries We Serve</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="industry-card industry-card-healthcare">
+          <h3 class="text-xl font-semibold mb-2">Healthcare</h3>
+          <p>Secure and scalable solutions for patient care.</p>
+        </div>
+        <div class="industry-card industry-card-fintech">
+          <h3 class="text-xl font-semibold mb-2">Financial Technology</h3>
+          <p>Robust systems for financial institutions.</p>
+        </div>
+        <div class="industry-card industry-card-retail">
+          <h3 class="text-xl font-semibold mb-2">Retail & eCommerce</h3>
+          <p>Innovative tools for e-commerce and operations.</p>
+        </div>
+        <div class="industry-card industry-card-education">
+          <h3 class="text-xl font-semibold mb-2">Education</h3>
+          <p>Technology solutions for enhanced learning experiences.</p>
+        </div>
+        <div class="industry-card industry-card-hospitality">
+          <h3 class="text-xl font-semibold mb-2">Hospitality & Travel</h3>
+          <p>Streamlined systems for guest satisfaction.</p>
+        </div>
+        <div class="industry-card industry-card-banking">
+          <h3 class="text-xl font-semibold mb-2">Banking</h3>
+          <p>Secure platforms for financial transactions.</p>
+        </div>
+        <div class="industry-card industry-card-realestate">
+          <h3 class="text-xl font-semibold mb-2">Real Estate</h3>
+          <p>Tools for property management and sales.</p>
+        </div>
+        <div class="industry-card industry-card-media">
+          <h3 class="text-xl font-semibold mb-2">Media & Entertainment</h3>
+          <p>Dynamic solutions for content delivery.</p>
+        </div>
+        <div class="industry-card industry-card-ngos">
+          <h3 class="text-xl font-semibold mb-2">NGO</h3>
+          <p>Cost-effective IT for mission-driven organizations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>Blog</h2>
+      <p class="text-lg">Read our latest articles on IT trends, case studies, and industry insights.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="modern-contact-section">
+    <div class="custom-container fade-in">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Contact Us</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="flex flex-col justify-center">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+          <p class="text-gray-600 mb-6">We'd love to hear from you! Reach out with any questions or inquiries.</p>
+          <div class="contact-detail-item">
+            <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 01 1.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V6.5z"></path>
+            </svg>
+            <a href="tel:+1234567890" class="text-gray-700 hover:text-blue-600 transition">+1 (234) 567-8900</a>
+          </div>
+          <div class="contact-detail-item">
+            <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-6l9 6v10a2 2 0 01-2 2H5a2 2 0 01-2 2V8z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l-9-6m9-9l9 6"></path>
+            </svg>
+            <a href="mailto:info@telsat.com" class="text-gray-700 hover:text-blue-400 transition">info@telsat.com</a>
+          </div>
+          <div class="flex space-x-4 mt-6">
+            <a href="https://twitter.com" target="_blank" class="text-gray-600 hover:text-blue-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-blue-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="text-gray-600 hover:text-blue-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="modern-contact-card p-8 shadow-lg">
+          <form action="#" method="POST">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <input type="text" name="first_name" placeholder="First Name" class="modern-contact-input" required>
+              </div>
+              <div>
+                <input type="text" name="last_name" placeholder="Last Name" class="modern-contact-input" required>
+              </div>
+            </div>
+            <div class="mb-6">
+              <input type="email" name="email" placeholder="Your Email" class="modern-contact-input" required>
+            </div>
+            <div class="mb-6">
+              <input type="text" name="company" placeholder="Company" class="modern-contact-input">
+            </div>
+            <div class="mb-6">
+              <input type="tel" name="phone" placeholder="Phone Number" class="modern-contact-input">
+            </div>
+            <div class="mb-6">
+              <textarea name="message" placeholder="Your Message" class="modern-contact-textarea" required rows="4"></textarea>
+            </div>
+            <div class="mb-4">
+              <label class="modern-contact-checkbox-label">
+                <input type="checkbox" name="data_protection_consent" class="modern-contact-checkbox" required>
+                <span class="text-gray-600 text-sm">I have read and understood the Data Protection Notice on the processing of my personal data.</span>
+              </label>
+            </div>
+            <div class="mb-6">
+              <label class="modern-contact-checkbox-label">
+                <input type="checkbox" name="marketing_consent" class="modern-contact-checkbox">
+                <span class="text-gray-600 text-sm">Under the scope of Statement of Explicit Consent for Commercial Electronic Messages, I want to be informed about the latest news and offers.</span>
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="modern-contact-button">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="custom-footer">
+    <div class="custom-container">
+      <div class="flex justify-center space-x-4 mb-4">
+        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p>© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search toggle and functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.custom-section').forEach(section => {
+        const title = section.querySelector('h2').textContent.toLowerCase();
+        section.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Fade-in animation on scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Carousel functionality
+    const carouselTrack = document.querySelector('.carousel-track');
+    const panels = document.querySelectorAll('.carousel-panel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevButton = document.querySelector('.carousel-nav.prev');
+    const nextButton = document.querySelector('.carousel-nav.next');
+    let currentIndex = 0;
+    const panelsPerView = 3;
+
+    function updateCarousel() {
+      const panelWidth = panels[0].offsetWidth;
+      const maxIndex = panels.length - panelsPerView; // Maximum index to show the last panel
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+      carouselTrack.style.transform = `translateX(-${currentIndex * panelWidth}px)`; // Move by full panel width
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+      prevButton.classList.toggle('hidden', currentIndex === 0);
+      nextButton.classList.toggle('hidden', currentIndex >= maxIndex);
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < panels.length - 1) {
+        currentIndex += 1;
+        updateCarousel();
+      }
+    });
+
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex -= 1;
+        updateCarousel();
+      }
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel(); // Initialize carousel on load
+  </script>
+</body>
+</html>

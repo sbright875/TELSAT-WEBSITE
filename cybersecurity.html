@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Consulting - Telsat Engineering Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .nav-toggle { display: none; }
+    .nav-menu { display: flex; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 64px; 
+        left: 0; 
+        right: 0; 
+        background: white; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      }
+      .nav-menu.active { display: flex; }
+    }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .service-hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 6rem 0;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 45, 114, 0.7), rgba(0, 45, 114, 0.7));
+      z-index: 0;
+    }
+    .service-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="custom-header sticky top-0 z-50">
+    <div class="custom-container flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Telsat Engineering Solutions Logo" class="h-10 mr-3">
+        <h1>Telsat Engineering Services</h1>
+      </div>
+      <button class="nav-toggle md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex space-x-8 custom-nav">
+        <a href="index.html#home">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#companies">Companies</a>
+        <a href="index.html#careers">Careers</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <li class="search-container">
+          <button class="search-toggle text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" class="search-input" placeholder="Search...">
+        </li>
+      </nav>
+    </div>
+  </header>
+
+  <section class="service-hero" style="background-image: url('images/IT-consulting.jpg');">
+    <div class="custom-container text-center fade-in">
+      <h2>Cybersecurity Consulting</h2>
+      <p class="text-lg mb-6">Strategic guidance to optimize your IT infrastructure.</p>
+    </div>
+  </section>
+
+  <section class="custom-section">
+    <div class="custom-container fade-in">
+      <h2>About Our Cybersecurity Consulting Services</h2>
+      <p class="text-lg mb-4">Our Cybersecurity consulting services provide expert guidance to align your technology strategy with business goals. We assess your current infrastructure, identify inefficiencies, and recommend tailored solutions to enhance performance, security, and scalability.</p>
+      <h3 class="text-xl font-semibold mb-2">Key Benefits</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li>Optimized IT infrastructure for improved efficiency.</li>
+        <li>Strategic roadmaps aligned with business objectives.</li>
+        <li>Cost-effective solutions to maximize ROI.</li>
+        <li>Enhanced security and compliance.</li>
+      </ul>
+      <a href="index.html#contact" class="cta-button">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer class="custom-footer">
+    <div class="custom-container">
+      <div class="flex justify-center space-x-4 mb-4">
+        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.2c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"></path></svg>
+        </a>
+      </div>
+      <p>© 2025 Telsat Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Search toggle and functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchInput = document.querySelector('.search-input');
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.custom-section').forEach(section => {
+        const title = section.querySelector('h2').textContent.toLowerCase();
+        section.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Fade-in animation on scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>
