@@ -12,6 +12,17 @@ body {
 }
 
 /* Scoped container */
+.whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+  }
+  .whatsapp-btn:hover {
+    background-color: #20b354;
+  }
 .custom-container {
   width: 100%;
   max-width: 1280px;
@@ -813,3 +824,4 @@ body {
   .nav-menu {
     display: none;
   }
+
